@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LawBotics - AI Legal Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Custom styles */
+      .document-upload {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf9 100%);
+        border: 2px dashed #3b82f6;
+        transition: all 0.3s ease;
+      }
+      .document-upload:hover {
+        background: linear-gradient(135deg, #e4ecf9 0%, #d4e3fa 100%);
+      }
+      .chat-message.user {
+        background-color: #3b82f6;
+        color: white;
+        border-radius: 1rem 1rem 0 1rem;
+      }
+      .chat-message.bot {
+        background-color: #f3f4f6;
+        color: #111827;
+        border-radius: 1rem 1rem 1rem 0;
+      }
+      .legal-term {
+        position: relative;
+        cursor: pointer;
+        border-bottom: 1px dashed #3b82f6;
+      }
+      .legal-term .tooltip {
+        visibility: hidden;
+        width: 200px;
+        background-color: #1e3a8a;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .legal-term:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+      .analysis-highlight {
+        background-color: rgba(251, 191, 36, 0.3);
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+      .pulse-animation {
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white shadow-lg">
+      <div
+        class="container mx-auto px-4 py-6 flex justify-between items-center"
+      >
+        <div class="flex items-center space-x-3">
+          <i class="fas fa-balance-scale text-2xl"></i>
+          <h1 class="text-2xl font-bold">LawBotics</h1>
+        </div>
+        <nav>
+          <ul class="flex space-x-6">
+            <li>
+              <a href="#features" class="hover:text-indigo-200">Features</a>
+            </li>
+            <li><a href="#demo" class="hover:text-indigo-200">Demo</a></li>
+            <li><a href="#about" class="hover:text-indigo-200">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-indigo-800 text-white py-20">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-6">
+          Revolutionizing Legal Assistance in India
+        </h2>
+        <p class="text-xl mb-8 max-w-3xl mx-auto">
+          AI-powered document analysis, legal term simplification, and chatbot
+          assistance for individuals and SMEs.
+        </p>
+        <button
+          class="bg-white text-indigo-800 font-semibold px-6 py-3 rounded-lg hover:bg-indigo-100 transition duration-300 pulse-animation"
+        >
+          Try Demo Now
+        </button>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+          Key Features
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Feature 1 -->
+          <div
+            class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300"
+          >
+            <div class="text-indigo-600 mb-4">
+              <i class="fas fa-file-alt text-4xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Document Analysis</h3>
+            <p class="text-gray-600">
+              Upload legal documents for detailed analysis using our
+              InLegalBERT-powered system that identifies key clauses and
+              obligations.
+            </p>
+          </div>
+          <!-- Feature 2 -->
+          <div
+            class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300"
+          >
+            <div class="text-indigo-600 mb-4">
+              <i class="fas fa-language text-4xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Term Simplification</h3>
+            <p class="text-gray-600">
+              Complex legal jargon converted to plain language with explanations
+              for better understanding.
+            </p>
+          </div>
+          <!-- Feature 3 -->
+          <div
+            class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300"
+          >
+            <div class="text-indigo-600 mb-4">
+              <i class="fas fa-robot text-4xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">AI Chatbot</h3>
+            <p class="text-gray-600">
+              24/7 legal assistance with contextual understanding based on your
+              documents.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+          Interactive Demo
+        </h2>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+          <!-- Document Upload Section -->
+          <div class="w-full lg:w-1/3">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="text-xl font-semibold mb-4">Upload Legal Document</h3>
+              <div
+                class="document-upload p-8 rounded-lg text-center mb-4 cursor-pointer"
+                id="dropArea"
+              >
+                <i
+                  class="fas fa-cloud-upload-alt text-4xl text-indigo-500 mb-3"
+                ></i>
+                <p class="text-gray-600">
+                  Drag & drop your legal document here or click to browse
+                </p>
+                <input
+                  type="file"
+                  id="fileInput"
+                  class="hidden"
+                  accept=".pdf,.doc,.docx,.txt"
+                />
+              </div>
+              <button
+                id="analyzeBtn"
+                class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled
+              >
+                Analyze Document
+              </button>
+            </div>
+
+            <!-- Sample Documents -->
+            <div class="bg-white p-6 rounded-lg shadow-md mt-6">
+              <h3 class="text-xl font-semibold mb-4">Try Sample Documents</h3>
+              <div class="space-y-2">
+                <button
+                  class="sample-doc-btn w-full text-left p-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition duration-300"
+                  data-file="rental_agreement.txt"
+                >
+                  Rental Agreement
+                </button>
+                <button
+                  class="sample-doc-btn w-full text-left p-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition duration-300"
+                  data-file="employment_contract.txt"
+                >
+                  Employment Contract
+                </button>
+                <button
+                  class="sample-doc-btn w-full text-left p-3 bg-gray-100 rounded-lg hover:bg-gray-200 transition duration-300"
+                  data-file="nda.txt"
+                >
+                  Non-Disclosure Agreement
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Document Analysis Results -->
+          <div class="w-full lg:w-2/3">
+            <div class="bg-white p-6 rounded-lg shadow-md h-full">
+              <h3 class="text-xl font-semibold mb-4">
+                Document Analysis Results
+              </h3>
+              <div class="flex justify-between mb-4">
+                <div>
+                  <span class="font-medium">Document:</span>
+                  <span id="docName" class="text-gray-600 ml-2"
+                    >No document selected</span
+                  >
+                </div>
+                <div id="processingIndicator" class="hidden">
+                  <i class="fas fa-spinner fa-spin text-indigo-600 mr-2"></i>
+                  <span class="text-sm text-gray-600"
+                    >Processing document...</span
+                  >
+                </div>
+              </div>
+              <div
+                id="docPreview"
+                class="bg-gray-50 p-4 rounded-lg h-96 overflow-y-auto"
+              >
+                <p class="text-gray-500 text-center my-20">
+                  Upload a document to see the analysis results here
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chatbot Section -->
+        <div class="mt-12 bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="bg-indigo-600 text-white p-4">
+            <h3 class="text-xl font-semibold flex items-center">
+              <i class="fas fa-robot mr-3"></i>
+              LawBotics AI Assistant
+            </h3>
+          </div>
+          <div class="p-4">
+            <div id="chatContainer" class="h-64 overflow-y-auto mb-4 space-y-2">
+              <div class="chat-message bot">
+                <p>
+                  Hello! I'm your AI legal assistant. How can I help you today?
+                  You can ask me questions about your uploaded document or
+                  general legal queries.
+                </p>
+              </div>
+            </div>
+            <div class="flex">
+              <input
+                type="text"
+                id="userInput"
+                placeholder="Type your legal question here..."
+                class="flex-grow p-3 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+              <button
+                id="sendBtn"
+                class="bg-indigo-600 text-white px-4 rounded-r-lg hover:bg-indigo-700 transition duration-300"
+              >
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-indigo-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+          About LawBotics
+        </h2>
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white p-8 rounded-lg shadow-md">
+            <h3 class="text-2xl font-semibold mb-4 text-indigo-800">
+              Our Technology
+            </h3>
+            <p class="text-gray-700 mb-6">
+              LawBotics leverages state-of-the-art natural language processing
+              and machine learning technologies to democratize legal assistance
+              in India. Our system is built on open-source foundations to ensure
+              accessibility and continuous improvement.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div>
+                <h4 class="text-lg font-semibold mb-2 text-indigo-700">
+                  Core Components
+                </h4>
+                <ul class="space-y-2 text-gray-700">
+                  <li>
+                    <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                    <strong>InLegalBERT</strong>: Custom language model
+                    fine-tuned on Indian legal documents
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                    <strong>RAG Architecture</strong>: For retrieving relevant
+                    legal precedents and statutes
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                    <strong>Autoencoder</strong>: For abstractive summarization
+                    of legal documents
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle text-indigo-500 mr-2"></i>
+                    <strong>Term Simplification Engine</strong>: Converting
+                    legalese to plain language
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold mb-2 text-indigo-700">
+                  Data Sources
+                </h4>
+                <ul class="space-y-2 text-gray-700">
+                  <li>
+                    <i class="fas fa-database text-indigo-500 mr-2"></i> Indian
+                    Legal Judgment Repository
+                  </li>
+                  <li>
+                    <i class="fas fa-database text-indigo-500 mr-2"></i> Central
+                    Acts & Rules of India
+                  </li>
+                  <li>
+                    <i class="fas fa-database text-indigo-500 mr-2"></i> Supreme
+                    Court and High Court Judgments
+                  </li>
+                  <li>
+                    <i class="fas fa-database text-indigo-500 mr-2"></i> Custom
+                    annotated legal datasets
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mb-4 text-indigo-800">
+              Implementation Guide
+            </h3>
+            <div class="space-y-4">
+              <div class="bg-indigo-100 p-4 rounded-lg">
+                <h4 class="font-semibold text-indigo-800 mb-2">
+                  1. Setting Up the Development Environment
+                </h4>
+                <p class="text-gray-700 mb-2">
+                  You'll need Python 3.8+ and the following core packages:
+                </p>
+                <pre
+                  class="bg-gray-800 text-white p-3 rounded overflow-x-auto"
+                ><code>pip install transformers torch spacy nltk rasa sentence-transformers pdfplumber python-docx</code></pre>
+              </div>
+
+              <div class="bg-indigo-100 p-4 rounded-lg">
+                <h4 class="font-semibold text-indigo-800 mb-2">
+                  2. Legal Text Processing Pipeline
+                </h4>
+                <pre
+                  class="bg-gray-800 text-white p-3 rounded overflow-x-auto"
+                ><code>from transformers import AutoTokenizer, AutoModelForSequenceClassification
+
+# Load InLegalBERT model
+tokenizer = AutoTokenizer.from_pretrained("law-ai/InLegalBERT")
+model = AutoModelForSequenceClassification.from_pretrained("law-ai/InLegalBERT")
+
+def analyze_legal_document(text):
+    inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=512)
+    outputs = model(**inputs)
+    return outputs.logits.argmax().item()</code></pre>
+              </div>
+
+              <div class="bg-indigo-100 p-4 rounded-lg">
+                <h4 class="font-semibold text-indigo-800 mb-2">
+                  3. Document Summarization
+                </h4>
+                <pre
+                  class="bg-gray-800 text-white p-3 rounded overflow-x-auto"
+                ><code>from transformers import pipeline
+
+summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+
+def summarize_legal_doc(document, max_length=150):
+    # Split document into chunks if too large
+    chunks = [document[i:i+1024] for i in range(0, len(document), 1024)]
+    summaries = []
+    for chunk in chunks:
+        summary = summarizer(chunk, max_length=max_length, min_length=30)
+        summaries.append(summary[0]['summary_text'])
+    return ' '.join(summaries)</code></pre>
+              </div>
+
+              <div class="bg-indigo-100 p-4 rounded-lg">
+                <h4 class="font-semibold text-indigo-800 mb-2">
+                  4. Term Simplification
+                </h4>
+                <pre
+                  class="bg-gray-800 text-white p-3 rounded overflow-x-auto"
+                ><code>legal_to_plain = {
+    "force majeure": "unavoidable events that prevent contract fulfillment",
+    "indemnification": "protection against loss or damage",
+    "jurisdiction": "area where a court has authority",
+    # Add more terms here
+}
+
+def simplify_legal_terms(text):
+    for term, explanation in legal_to_plain.items():
+        text = text.replace(term, f'&lt;span class="legal-term"&gt;{term}&lt;span class="tooltip"&gt;{explanation}&lt;/span&gt;&lt;/span&gt;')
+    return text</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <h2 class="text-xl font-bold flex items-center">
+              <i class="fas fa-balance-scale mr-2"></i> LawBotics
+            </h2>
+            <p class="text-gray-400 mt-1">
+              AI-powered Legal Assistance for India
+            </p>
+          </div>
+          <div>
+            <p class="text-gray-400">
+              &copy; 2023 LawBotics. All rights reserved.
+            </p>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400 text-sm"
+        >
+          <p>Disclaimer: This platform provides legal</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
