@@ -9,71 +9,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <style>
-      /* Custom styles */
-      .document-upload {
-        background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf9 100%);
-        border: 2px dashed #3b82f6;
-        transition: all 0.3s ease;
-      }
-      .document-upload:hover {
-        background: linear-gradient(135deg, #e4ecf9 0%, #d4e3fa 100%);
-      }
-      .chat-message.user {
-        background-color: #3b82f6;
-        color: white;
-        border-radius: 1rem 1rem 0 1rem;
-      }
-      .chat-message.bot {
-        background-color: #f3f4f6;
-        color: #111827;
-        border-radius: 1rem 1rem 1rem 0;
-      }
-      .legal-term {
-        position: relative;
-        cursor: pointer;
-        border-bottom: 1px dashed #3b82f6;
-      }
-      .legal-term .tooltip {
-        visibility: hidden;
-        width: 200px;
-        background-color: #1e3a8a;
-        color: #fff;
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px;
-        position: absolute;
-        z-index: 1;
-        bottom: 125%;
-        left: 50%;
-        transform: translateX(-50%);
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-      .legal-term:hover .tooltip {
-        visibility: visible;
-        opacity: 1;
-      }
-      .analysis-highlight {
-        background-color: rgba(251, 191, 36, 0.3);
-        padding: 2px 4px;
-        border-radius: 4px;
-      }
-      .pulse-animation {
-        animation: pulse 2s infinite;
-      }
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.05);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
-    </style>
+    
+    <link rel="stylesheet" href="style.css">
   </head>
   <body class="bg-gray-50 min-h-screen">
     <!-- Header -->
@@ -462,7 +399,7 @@ def simplify_legal_terms(text):
           </div>
           <div>
             <p class="text-gray-400">
-              &copy; 2023 LawBotics. All rights reserved.
+              &copy; 2025 LawBotics. All rights reserved.
             </p>
           </div>
         </div>
@@ -473,5 +410,6 @@ def simplify_legal_terms(text):
         </div>
       </div>
     </footer>
+    <script src="main.js"></script>
   </body>
 </html>

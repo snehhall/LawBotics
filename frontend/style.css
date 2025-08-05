@@ -1,0 +1,207 @@
+
+      /* Custom styles */
+      .document-upload {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf9 100%);
+        border: 2px dashed #3b82f6;
+        transition: all 0.3s ease;
+      }
+      .document-upload:hover {
+        background: linear-gradient(135deg, #e4ecf9 0%, #d4e3fa 100%);
+      }
+      .chat-message.user {
+        background-color: #3b82f6;
+        color: white;
+        border-radius: 1rem 1rem 0 1rem;
+      }
+      .chat-message.bot {
+        background-color: #f3f4f6;
+        color: #111827;
+        border-radius: 1rem 1rem 1rem 0;
+      }
+      .legal-term {
+        position: relative;
+        cursor: pointer;
+        border-bottom: 1px dashed #3b82f6;
+      }
+      .legal-term .tooltip {
+        visibility: hidden;
+        width: 200px;
+        background-color: #1e3a8a;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .legal-term:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+      .analysis-highlight {
+        background-color: rgba(251, 191, 36, 0.3);
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
+      .pulse-animation {
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .legal-term {
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dashed #3b82f6;
+    transition: all 0.2s ease;
+  }
+  
+  .legal-term:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+    border-radius: 2px;
+  }
+  
+  .tooltip {
+    position: absolute;
+    background-color: #1f2937;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.4;
+    z-index: 1000;
+    white-space: nowrap;
+    max-width: 250px;
+    white-space: normal;
+    word-wrap: break-word;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+  }
+  
+  .tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #1f2937;
+  }
+  
+  /* Chat message improvements */
+  .chat-message {
+    animation: fadeInUp 0.3s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Analysis section improvements */
+  .analysis-section {
+    transition: all 0.3s ease;
+  }
+  
+  .analysis-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Stats cards */
+  .stat-card {
+    transition: all 0.2s ease;
+  }
+  
+  .stat-card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Improved scrollbar for simplified text */
+  .simplified-text-container::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .simplified-text-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+  
+  .simplified-text-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+  }
+  
+  .simplified-text-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+  
+  /* Loading animation */
+  .typing-dots {
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 10px;
+  }
+  
+  .typing-dots::after {
+    content: '●●●';
+    animation: typing 1.4s infinite;
+    font-size: 12px;
+  }
+  
+  @keyframes typing {
+    0%, 60%, 100% {
+      transform: translateY(0);
+    }
+    30% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Improved button states */
+  .btn-processing {
+    position: relative;
+    color: transparent;
+  }
+  
+  .btn-processing::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
